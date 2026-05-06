@@ -1,0 +1,21 @@
+extends layout
+
+block main
+  h3 Add a new employee
+  
+  form(action="/employee/new" method="post")
+    fieldset
+      label(for="employeeName") Employee Name:
+      input(type="text" name="employeeName" placeholder="name" value=employeeName)
+      
+    fieldset
+      label(for="email") Email:
+      input(type="email" name="email" placeholder="email" value=email)
+      
+    fieldset 
+      label(for="submit" value="Submit")
+      input(type="submit" value="Submit")
+      br
+      a(href=`/employeeList`) Cancel
+block signedIn
+block headerLinks

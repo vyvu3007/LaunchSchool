@@ -1,0 +1,41 @@
+extends layout
+
+block main
+  if !employeeList || employeeList.length === 0
+    p#no_list No employees found. Add one?
+  else
+    table
+      thead
+        tr
+          th Name
+          th Email
+          th Actions
+      tbody
+        each employee in employeeList
+          tr
+            td= employee.name
+            td= employee.email
+            td
+              a(href=`/employeeList/${employee.id}/edit`) Edit
+    
+    if totalPages > 1
+      .pagination
+        if hasPreviousPage
+          a(href=`/employeeList?page=${currentPage - 1}`) Previous
+        
+        Page #{currentPage} of #{totalPages}
+        
+        if hasNextPage
+          a(href=`/employeeList?page=${currentPage + 1}`)  Next
+
+block headerLinks
+  a.button.add(href="/employee/new") Add New Employee
+  
+  h3 View Sale Record for November 2025
+  form.form(action="/employeeList/employee-sales" method="post")
+    div
+      label(for="employeeName") Employee Name:
+      input(type="text" name="employeeName" id="employeeName" placeholder="" )
+    div
+      input(type="submit" value="View Sales")
+

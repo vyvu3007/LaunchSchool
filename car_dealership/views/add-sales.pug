@@ -1,0 +1,31 @@
+extends layout
+
+block main
+  h3 Add a sale to #{employeeName}'s sale record
+  
+  form.form(action=`/employeeList/sales/${employeeId}/add` method="post")
+    div
+      label(for="brand") Brand:
+      input(type="text" name="brand" placeholder="" value=brand )
+    
+    div
+      label(for="model") Model:
+      input(type="text" name="model" placeholder="" value=model )
+    
+    div
+      label(for="year") Year:
+      input(type="number" name="year" placeholder="" value=year )
+    
+    div
+      label(for="date") Sale Date:
+      input(type="date" name="date" value="date")
+    
+    div
+      label(for="price") Price:
+      input(type="number" name="price" placeholder="" value=price)
+    
+    div.form-buttons
+      input(type="submit" value="Add Sale")
+      a.cancel-link(href=`/employeeList/${employeeId}/sales`) Cancel
+
+block headerLinks

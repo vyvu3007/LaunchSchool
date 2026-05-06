@@ -1,0 +1,16 @@
+extends layout 
+block main
+  h3 Edit sale price 
+  dl
+  dt Current price : $#{salePrice}
+  form(action=`/employeeList/sales/${employeeId}/${saleId}/edit-price` method="post")
+    div
+      label(for="price") Enter new price:
+      input(type="number" name="price" placeholder="Enter price" value=price)
+    div
+      input(type="submit" value="Submit")
+      
+block headerLinks
+  form(action=`/employeeList/${employeeId}/sales` method="get")
+    button Cancel
+block signedIn

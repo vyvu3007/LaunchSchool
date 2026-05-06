@@ -1,0 +1,12 @@
+extends layout
+
+block main
+  form(action="/users/signin" method="post")
+    label(for="username") Username:
+    input(type="text" name="username" placeholder="username" value=username)
+    label(for="password") Password:
+    input(type="password" name="password" placeholder="password" value=password)
+    label(for="submit" value="Sign In")
+    input(type="submit" value="Sign In")
+block headerLinks
+block signedIn

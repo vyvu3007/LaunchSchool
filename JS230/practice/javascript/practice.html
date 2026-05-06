@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+  <textarea id="textMessage">
+
+  </textarea>
+  <p id="count">
+
+  </p>
+  <script>
+    let countKey = 0
+    let textarea = document.querySelector('#textMessage')
+    let count = document.querySelector('#count')
+    textarea.addEventListener('keydown', event => {
+        countKey++
+        count.textContent = countKey
+    })
+  </script>
+</body>
+</html>

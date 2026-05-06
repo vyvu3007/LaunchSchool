@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+  head
+    title Car Dealership
+    meta(charset="UTF-8")
+    link(rel="stylesheet" href="/styles.css")
+    
+  body
+    header 
+      h1 Golden Auto Car Dealership
+      
+    main
+      if flash
+        .flash-messages
+          each messages, type in flash
+            each message in messages
+              div(class=`flash ${type}`)= message
+      
+      block main
+      block headerLinks
+         if signedIn
+           .actions
+             a.add(href="/employee/new") New Employee
+    footer
+      block signedIn
+        if signedIn
+          form(action="/users/signout" method="post")
+            button.signout Sign Out
+        else
+          form(action="/users/signin" method="get")
+            button Sign In

@@ -1,0 +1,47 @@
+extends layout
+
+block main
+  if !employeeSaleList || employeeSaleList.length === 0
+    h2 #{employeeName} - November 2025 Sale Record 
+    p#no_list No sales found.
+  else
+    h2 #{employeeName} - November 2025 Sale Record 
+    table
+      thead
+        tr
+          th Car Brand
+          th Car Model
+          th Year
+          th Sale Date
+          th Price
+          th Action
+      tbody
+        each sale in employeeSaleList
+          tr
+            td= sale.car_brand
+            td= sale.car_model
+            td= sale.car_year
+            td= new Date(sale.sold_date).toLocaleDateString('en-US')
+            td $#{sale.price}
+            td
+              a.button(href=`/employeeList/sales/${employeeId}/${sale.sale_id}/edit-price`) Edit  
+            td
+              form.delete(action=`/employeeList/sales/${employeeId}/${sale.sale_id}/delete` method="post") 
+                button(type="submit") Delete
+    
+    if totalPages > 1
+      .pagination
+        if hasPrevPage
+          a(href=`/employeeList/${employeeId}/sales?page=${currentPage - 1}`) Previous
+        
+        span Page #{currentPage} of #{totalPages}
+        
+        if hasNextPage
+          a(href=`/employeeList/${employeeId}/sales?page=${currentPage + 1}`) Next 
+              
+block headerLinks
+  h3
+    br
+    a.button(href=`/employeeList/sales/${employeeId}/add`) Add a sale
+    form(action="/employeeList" method="get")
+      button Cancel

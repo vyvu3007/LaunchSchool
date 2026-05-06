@@ -1,0 +1,27 @@
+extends layout
+
+block main
+  header 
+    h2 Editing Employee
+    ul
+      li
+        form.delete(action=`/employeeList/${employee.id}/delete` method="post")
+          button.delete(type="submit") Delete Employee
+
+  form(action=`/employeeList/${employee.id}/edit` method="post")  
+    dl
+      dt 
+        label(for="employeeEmail") Email:
+      dd
+        input(type="email"
+              id="employeeEmail"
+              name="employeeEmail"
+              placeholder="Email"
+              value=employeeEmail || employee.email)
+
+    fieldset.actions
+      input(type="submit" value="Save")
+      a(href=`/employeeList`) Cancel
+
+block signedIn
+block headerLinks
