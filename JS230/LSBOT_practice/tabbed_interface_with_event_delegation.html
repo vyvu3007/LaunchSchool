@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: aliceblue;
+    padding: 20px;
+}
+#outermost {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    max-width:400px;
+
+}
+#firstTab, #secondTab, #thirdTab {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: #fafafa;
+}
+button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4338ca;
+}
+.hidden { display: none; }
+
+
+        </style>
+    </head>
+    <body>
+        <h1>Tabbed interface</h1>
+        <div id="outermost">
+          <h3>List all tabs</h3>
+          <div id="firstTab">
+            <button id="button1">Click 1</button>
+            <p class="show">Sent away at sixteen, Maggie Dawes 
+                could think only of the friends and family she 
+                left behind </p>
+          </div>
+          <div id="secondTab">
+            <button id="button2">Click 2</button>
+            <p class="show">By 2019, Maggie 
+                is a renowned travel photographer </p>
+          </div>
+          <div id="thirdTab">
+            <button id="button3">Click 3</button>
+            <p class="show">Unexpectedly grounded over 
+                Christmas and struggling</p>
+          </div>
+        </div>
+        <script>
+            const outermostDiv = document.querySelector('#outermost');
+          outermostDiv.addEventListener('click', (event) => {
+  if (!event.target.matches('button')) return;
+
+  const buttons = outermostDiv.querySelectorAll('button');
+
+  buttons.forEach(button => {
+    if (button !== event.target) {
+      button.nextElementSibling.classList.add('hidden');    // hide others
+    } else {
+      button.nextElementSibling.classList.remove('hidden'); // show clicked one
+    }
+  });
+});
+        </script>
+    </body>
+</html>

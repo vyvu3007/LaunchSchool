@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Undoable Deletion</title>
+  <style>
+    body { font-family: sans-serif; }
+    #item-list li {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #notifications {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .notification {
+      padding: 15px;
+      background-color: #333;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .notification button {
+      margin-left: 15px;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <h1>My List</h1>
+  <ul id="item-list">
+    <li class="visible">Item 1 <button class="delete">Delete</button></li>
+    <li>Item 2 <button class="delete">Delete</button></li>
+    <li>Item 3 <button class="delete">Delete</button></li>
+    <li>Item 4 <button class="delete">Delete</button></li>
+  </ul>
+
+  <div id="notifications"></div>
+
+  <script>
+    const list = document.querySelector('#item-list')
+    const notifications = document.querySelector('#notifications')
+    list.addEventListener('click', event => {
+    if (!event.target.classList.contains('delete')) return;
+    let li = event.target.closest('li')
+     li.style.display = 'none'
+     notifications.insertAdjacentHTML('beforeend', createDiv());
+    const notification = notifications.lastElementChild;
+     let timeoutId = setTimeout(()=>{
+    li.remove()
+    notification.remove()
+     },5000)
+     notification.addEventListener('click', eventButton => {
+        if(eventButton.target.tagName === 'BUTTON'){
+            li.style.display = 'flex'
+            clearTimeout(timeoutId)
+            notification.remove()
+        }
+    })
+
+    })
+    
+    function createDiv(){
+    return `<div class='notification'>Item Deleted <button class='undo'>Undo</button></div>`
+    }
+  </script>
+</body>
+</html>
